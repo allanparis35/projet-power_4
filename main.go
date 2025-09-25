@@ -2,13 +2,12 @@ package main
 
 import (
 	"net/http"
-
 	"github.com/russross/blackfriday"
 )
 
 func main() {
-	http.HandleFunc("/markdown", GenerateMarkdown)
 	http.Handle("/", http.FileServer(http.Dir("public")))
+	http.HandleFunc("/markdown", GenerateMarkdown)
 	http.ListenAndServe(":8080", nil)
 }
 
