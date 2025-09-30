@@ -1,4 +1,4 @@
-package piscine 
+package printcircle
 
  func PrintCircle() {
 	var rows = 6
