@@ -2,18 +2,19 @@ package main
 
 import (
 	"net/http"
-	"github.com/russross/blackfriday"
+	"projet-power_4/game"
+	"projet-power_4/handlers"
 )
 
 func main() {
-	http.Handle("/", http.FileServer(http.Dir("public")))
-	http.HandleFunc("/markdown", GenerateMarkdown)
+	game.Reset()
+
+	http.HandleFunc("/", handlers.ShowBoard)
+	http.HandleFunc("/play", handlers.PlayMove)
+	http.HandleFunc("/reset", handlers.ResetHandler)
+
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
-	http.ListenAndServe(":8080", nil)
-}
 
-func GenerateMarkdown(rw http.ResponseWriter, r *http.Request) {
-	markdown := blackfriday.MarkdownCommon([]byte(r.FormValue("body")))
-	rw.Write(markdown)
+	http.ListenAndServe(":8080", nil)
 }

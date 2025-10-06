@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Connect 4</title>
+    <link rel="stylesheet" href="/static/connect4.css">
+</head>
+<body>
+    <h1>Connect 4</h1>
+    <h2>{{if .Winner}}Winner: {{.Winner}}!{{else}}Current Player: {{.CurrentPlayer}}{{end}}</h2>
+    
+    <div id="board">
+        {{range $row := .Board}}
+            {{range $col, $cell := $row}}
+                <div class="circle {{if eq $cell "red"}}red-piece{{else if eq $cell "yellow"}}yellow-piece{{end}}"></div>
+            {{end}}
+        {{end}}
+    </div>
+
+    {{if not .Winner}}
+    <form method="POST" action="/play">
+        <label>Column (0-6): </label>
+        <input type="number" name="column" min="0" max="6" required>
+        <button type="submit">Play</button>
+    </form>
+    {{end}}
+
+    <form method="POST" action="/reset">
+        <button type="submit">Reset Game</button>
+       <br />
+       <br />
+    </form>
+</body>
+</html>
