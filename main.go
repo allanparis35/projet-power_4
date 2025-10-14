@@ -1,14 +1,13 @@
 package main
-
 import (
-	"net/http"
-	"projet-power_4/game"
+    "net/http"
 	"projet-power_4/handlers"
+	"projet-power_4/table"
 )
-
 func main() {
-	game.Reset()
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+
+	table.Reset()
+	
 	http.HandleFunc("/", handlers.ShowBoard)
 	http.HandleFunc("/play", handlers.PlayMove)
 	http.HandleFunc("/reset", handlers.ResetHandler)
@@ -18,3 +17,4 @@ func main() {
 
 	http.ListenAndServe(":8080", nil)
 }
+

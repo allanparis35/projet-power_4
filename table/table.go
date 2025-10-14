@@ -1,5 +1,4 @@
-package game
-
+package table
 
 type GameState struct {
 	Board         [6][7]string
@@ -18,7 +17,6 @@ func Reset() {
 }
 
 func PlacePiece(col int) bool {
-
 	for row := 5; row >= 0; row-- {
 		if State.Board[row][col] == "" {
 			State.Board[row][col] = State.CurrentPlayer

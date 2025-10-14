@@ -1,10 +1,11 @@
-package winner 
+package winner
 
-func CheckWinner(board [6][7]string) string {	directions := [][2]int{
-		{0, 1},  
-		{1, 0},  
-		{1, 1},  
-		{1, -1}, 
+func CheckWinner(board [6][7]string) string {
+	directions := [][2]int{
+		{0, 1},
+		{1, 0},
+		{1, 1},
+		{1, -1},
 	}
 	for row := 0; row < 6; row++ {
 		for col := 0; col < 7; col++ {
@@ -23,9 +24,9 @@ func CheckWinner(board [6][7]string) string {	directions := [][2]int{
 					count++
 					if count == 4 {
 						return player
-					}	
+					}
 				}
-			}		
+			}
 		}
 	}
 	return ""
