@@ -5,7 +5,9 @@ body {
     height: 100vh;
     margin: 0;
     padding: 10px;
-    background-color: #f0f0f0;
+    background: url("/static/elias.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,9 +25,6 @@ p {
     color: #333;
     font-size: 18px;
     margin: 5px 0;
-}
-body {
-background: url("/static/elias.jpg");
 }
 
 
