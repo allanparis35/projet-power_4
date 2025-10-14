@@ -7,7 +7,7 @@
 <body>
     <h2>Connect 4</h2>
     <p>{{if .Winner}}Winner: {{.Winner}}!{{else}}Player: {{.CurrentPlayer}}{{end}}</p>
-     <div id="board">
+    <div id="board">
         {{range $row := .Board}}
             {{range $col, $cell := $row}}
             <div class="circle {{if eq $cell "red"}}red-piece{{else if eq $cell "yellow"}}yellow-piece{{end}}"></div>
@@ -15,6 +15,7 @@
         {{end}}
     </div>
     {{if not .Winner}}
+    <br />
     <div id="buttons-container">
         <form method="POST" action="/play" style="display: inline-block;">
             <input type="hidden" name="column" value="0" />
@@ -47,6 +48,7 @@
     </div>
     {{end}}
 
+    <br />
     <form method="POST" action="/reset">
         <button type="submit">Reset Game</button>
         <br />
