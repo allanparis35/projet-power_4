@@ -1,9 +1,12 @@
 body {
  
-background-image: url(elias.jpg);
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
+body {
+background: url("/static/elias.jpg");
+}
+
 
 #board {
     height: 540px;
