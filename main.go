@@ -1,15 +1,14 @@
 package main
 
 import (
-	"net/http"
 
+    "net/http"
 	"projet-power_4/handlers"
 	"projet-power_4/table"
 )
-
 func main() {
-	table.Reset()
 
+	table.Reset()
 	http.HandleFunc("/", handlers.ShowBoard)
 	http.HandleFunc("/play", handlers.PlayMove)
 	http.HandleFunc("/reset", handlers.ResetHandler)
