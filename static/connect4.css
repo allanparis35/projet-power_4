@@ -50,11 +50,17 @@ p {
 }
 
 .red-piece {
-    background-color: #e63946;
+    background: url("/static/bullerouge.jpg");
+    background-size: 210% 210%; 
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .yellow-piece {
-    background-color: #ffd60a;
+    background: url("/static/bullejaune.jpg");
+    background-size: 290% 290%; 
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #buttons-container {
