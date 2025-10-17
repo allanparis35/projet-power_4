@@ -27,6 +27,18 @@ p {
     margin: 5px 0;
 }
 
+.logo {
+  background-image: url("/static/titre.png"); /* mets ici le nom exact du fichier */
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+  width: 3500px;   /* ajuste selon la taille du logo */
+  height: 150px;
+  text-indent: -9999px; /* cache le texte */
+  overflow: hidden;
+  margin: 11px auto;
+
+}
 
 #board {
     height: 450px;
