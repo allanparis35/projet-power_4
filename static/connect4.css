@@ -5,7 +5,7 @@ body {
     height: 100vh;
     margin: 0;
     padding: 10px;
-    background: url("/static/bob.jpg");
+    background: url("/static/haa.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -31,8 +31,8 @@ p {
 #board {
     height: 450px;
     width: 525px;
-     background: url("/static/bobjellyfishing.jpg");
-    border: 8px solid #003d7a;
+     background: url("/static/mer.jpg");
+    border: 8px solid #0058b0;
     border-radius: 10px;
     margin: 5px auto;
     display: flex;
