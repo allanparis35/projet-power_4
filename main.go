@@ -1,5 +1,7 @@
 package main
+
 import (
+
     "net/http"
 	"projet-power_4/handlers"
 	"projet-power_4/table"
@@ -7,7 +9,6 @@ import (
 func main() {
 
 	table.Reset()
-	
 	http.HandleFunc("/", handlers.ShowBoard)
 	http.HandleFunc("/play", handlers.PlayMove)
 	http.HandleFunc("/reset", handlers.ResetHandler)
@@ -17,4 +18,3 @@ func main() {
 
 	http.ListenAndServe(":8080", nil)
 }
-
