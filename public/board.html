@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/static/connect4.css">
 </head>
 <body>
-    <h2>Connect 4</h2>
+    <h2 class="logo">Puissance 4</h2>
     <p>{{if .Winner}}Winner: {{.Winner}}!{{else}}Player: {{.CurrentPlayer}}{{end}}</p>
     <div id="board">
         {{range $row := .Board}}

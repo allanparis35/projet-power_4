@@ -15,6 +15,18 @@ body {
     overflow: hidden;
 }
 
+.logo {
+  background-image: url("/static/titre.png"); /* mets ici le nom exact du fichier */
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  width: 300px;   /* ajuste selon la taille du logo */
+  height: 120px;
+  text-indent: -9999px; /* cache le texte */
+  overflow: hidden;
+  margin: 20px auto;
+}
+
 h2 {
     color: #1e1e1e;
     font-size: 32px;
@@ -43,7 +55,10 @@ p {
 #board {
     height: 450px;
     width: 525px;
-     background: url("/static/mer.jpg");
+    background: url("/static/mer.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
     border: 8px solid #0058b0;
     border-radius: 10px;
     margin: 5px auto;
