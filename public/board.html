@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/connect4.css">
+    <script src="/static/music.js" defer></script>
 </head>
-<audio controls>
-  <source src="static/générique.ogg" type="audio/ogg">
-  <source src="static/générique.mp3" type="audio/mpeg">
-</audio>
 <body>
+    <audio id="game-audio" controls loop>
+        <source src="static/générique.ogg" type="audio/ogg">
+        <source src="static/générique.mp3" type="audio/mpeg">
+    </audio>
+
     <h2 class="logo">Puissance 4</h2>
     <p>{{if .Winner}}Winner: {{.Winner}}!{{else}}Player: {{.CurrentPlayer}}{{end}}</p>
     <div id="board">
@@ -19,46 +21,45 @@
         {{end}}
     </div>
         
-        {{if not .Winner}}
-        <br />
-        <div id="buttons-container">
-            <form method="POST" action="/play" style="display: inline-block;">
-                <input type="hidden" name="column" value="0" />
-                <button type="submit" class="column-button">1</button>
-            </form>
-            <form method="POST" action="/play" style="display: inline-block;">
-                <input type="hidden" name="column" value="1" />
-                <button type="submit" class="column-button">2</button>
-            </form>
-            <form method="POST" action="/play" style="display: inline-block;">
-                <input type="hidden" name="column" value="2" />
-                <button type="submit" class="column-button">3</button>
-            </form>
-            <form method="POST" action="/play" style="display: inline-block;">
-                <input type="hidden" name="column" value="3" />
-                <button type="submit" class="column-button">4</button>
-            </form>
-            <form method="POST" action="/play" style="display: inline-block;">
-                <input type="hidden" name="column" value="4" />
-                <button type="submit" class="column-button">5</button>
-            </form>
-            <form method="POST" action="/play" style="display: inline-block;">
-                <input type="hidden" name="column" value="5" />
-                <button type="submit" class="column-button">6</button>
-            </form>
-            <form method="POST" action="/play" style="display: inline-block;">
-                <input type="hidden" name="column" value="6" />
-                <button type="submit" class="column-button">7</button>
-            </form>
-        </div>
-        {{end}}
-
-        <br />
-        <form method="POST" action="/reset">
-            <button type="submit">Reset Game</button>
-            <br />
-            <br />
+    {{if not .Winner}}
+    <br />
+    <div id="buttons-container">
+        <form method="POST" action="/play" style="display: inline-block;">
+            <input type="hidden" name="column" value="0" />
+            <button type="submit" class="column-button">1</button>
+        </form>
+        <form method="POST" action="/play" style="display: inline-block;">
+            <input type="hidden" name="column" value="1" />
+            <button type="submit" class="column-button">2</button>
+        </form>
+        <form method="POST" action="/play" style="display: inline-block;">
+            <input type="hidden" name="column" value="2" />
+            <button type="submit" class="column-button">3</button>
+        </form>
+        <form method="POST" action="/play" style="display: inline-block;">
+            <input type="hidden" name="column" value="3" />
+            <button type="submit" class="column-button">4</button>
+        </form>
+        <form method="POST" action="/play" style="display: inline-block;">
+            <input type="hidden" name="column" value="4" />
+            <button type="submit" class="column-button">5</button>
+        </form>
+        <form method="POST" action="/play" style="display: inline-block;">
+            <input type="hidden" name="column" value="5" />
+            <button type="submit" class="column-button">6</button>
+        </form>
+        <form method="POST" action="/play" style="display: inline-block;">
+            <input type="hidden" name="column" value="6" />
+            <button type="submit" class="column-button">7</button>
         </form>
     </div>
+    {{end}}
+
+    <br />
+    <form method="POST" action="/reset">
+        <button type="submit">Reset Game</button>
+        <br />
+        <br />
+    </form>
 </body>
 </html>
