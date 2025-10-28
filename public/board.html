@@ -4,24 +4,20 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/connect4.css">
 </head>
+<audio controls>
+  <source src="static/générique.ogg" type="audio/ogg">
+  <source src="static/générique.mp3" type="audio/mpeg">
+</audio>
 <body>
-    <div class="video-background">
-        <video autoplay muted loop playsinline>
-            <source src="/static/video.mp4" type="video/mp4">
-        </video>
-    </div>
-
-    <div class="content">
-        <h2>Connect 4</h2>
-        <p>{{if .Winner}}Winner: {{.Winner}}!{{else}}Player: {{.CurrentPlayer}}{{end}}</p>
-        
-        <div id="board">
-            {{range $row := .Board}}
-                {{range $col, $cell := $row}}
-                <div class="circle {{if eq $cell "red"}}red-piece{{else if eq $cell "yellow"}}yellow-piece{{end}}"></div>
-                {{end}}
+    <h2 class="logo">Puissance 4</h2>
+    <p>{{if .Winner}}Winner: {{.Winner}}!{{else}}Player: {{.CurrentPlayer}}{{end}}</p>
+    <div id="board">
+        {{range $row := .Board}}
+            {{range $col, $cell := $row}}
+            <div class="circle {{if eq $cell "red"}}red-piece{{else if eq $cell "yellow"}}yellow-piece{{end}}"></div>
             {{end}}
-        </div>
+        {{end}}
+    </div>
         
         {{if not .Winner}}
         <br />
