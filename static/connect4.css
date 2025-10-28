@@ -1,37 +1,62 @@
 body {
- 
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     height: 100vh;
     margin: 0;
     padding: 10px;
-    background: url("/static/haa.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    position: relative;
+}
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.video-background video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
 }
 
 h2 {
-    color: #1e1e1e;
+    color: black;
     font-size: 32px;
     margin: 5px 0;
+    text-shadow: 2px 2px 4px black;
 }
 
 p {
     color: #333;
     font-size: 18px;
     margin: 5px 0;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
-
 
 #board {
     height: 450px;
     width: 525px;
-     background: url("/static/mer.jpg");
+    background: url("/static/mer.jpg");
     border: 8px solid #0058b0;
     border-radius: 10px;
     margin: 5px auto;
