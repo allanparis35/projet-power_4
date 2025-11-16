@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/connect4.css">
+    <script src="/static/play.js" defer></script>
 </head>
 <body>
-    
-   <img src="/static/titre.png" alt="Connect 4" class="logo">
-   
+
+   <img src="/static/titre.png" class="logo">
+
     <p>{{if .Winner}}Winner: {{.Winner}}!{{else}}Player: {{.CurrentPlayer}}{{end}}</p>
 
     <div id="board">
@@ -18,63 +19,12 @@
         </div>
         {{end}}
     {{end}}
-</div>
+    </div>
 
     <br />
     <form method="POST" action="/reset">
         <button type="submit">Reset Game</button>
     </form>
 
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const board = document.getElementById("board");
-        const circles = board.querySelectorAll(".circle");
-        const ROWS = 6;
-        const COLS = 7;
-        const grid = Array.from({ length: ROWS }, () => Array(COLS).fill(null));
-        let currentPlayer = "red";
-
-        circles.forEach(c => {
-            c.addEventListener("click", (e) => {
-                const col = parseInt(e.target.dataset.col);
-                dropPiece(col);
-            });
-        });
-
-        function dropPiece(col) {
-            for (let row = ROWS - 1; row >= 0; row--) {
-                if (!grid[row][col]) {
-                    grid[row][col] = currentPlayer;
-                    animateDrop(row, col, currentPlayer);
-                    currentPlayer = currentPlayer === "red" ? "yellow" : "red";
-                    break;
-                }
-            }
-        }
-
-        function animateDrop(row, col, color) {
-            const cellIndex = row * COLS + col;
-            const circle = circles[cellIndex];
-            const piece = document.createElement("div");
-            piece.classList.add("piece", color);
-            board.appendChild(piece);
-
-            const cellRect = circle.getBoundingClientRect();
-            const boardRect = board.getBoundingClientRect();
-            piece.style.left = (cellRect.left - boardRect.left) + "px";
-            piece.style.top = "0px";
-
-            piece.animate([
-                { top: "0px" },
-                { top: (cellRect.top - boardRect.top) + "px" }
-            ], {
-                duration: 500,
-                easing: "ease-in"
-            }).onfinish = () => {
-                piece.style.top = (cellRect.top - boardRect.top) + "px";
-            };
-        }
-    });
-    </script>
 </body>
 </html>
