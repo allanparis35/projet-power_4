@@ -3,63 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/connect4.css">
-    <script src="/static/music.js" defer></script>
 </head>
 <body>
-    <audio id="game-audio" controls loop>
-        <source src="static/générique.ogg" type="audio/ogg">
-        <source src="static/générique.mp3" type="audio/mpeg">
-    </audio>
-
-    <h2 class="logo">Puissance 4</h2>
+    
+   <img src="/static/titre.png" alt="Connect 4" class="logo">
+   
     <p>{{if .Winner}}Winner: {{.Winner}}!{{else}}Player: {{.CurrentPlayer}}{{end}}</p>
+
     <div id="board">
-        {{range $row := .Board}}
-            {{range $col, $cell := $row}}
-            <div class="circle {{if eq $cell "red"}}red-piece{{else if eq $cell "yellow"}}yellow-piece{{end}}"></div>
-            {{end}}
+    {{range $row := .Board}}
+        {{range $col, $cell := $row}}
+        <div class="circle {{if eq $cell "red"}}red-piece{{else if eq $cell "yellow"}}yellow-piece{{end}}"
+             data-col="{{$col}}">
+        </div>
         {{end}}
-    </div>
-        
-    {{if not .Winner}}
-    <br />
-    <div id="buttons-container">
-        <form method="POST" action="/play" style="display: inline-block;">
-            <input type="hidden" name="column" value="0" />
-            <button type="submit" class="column-button">1</button>
-        </form>
-        <form method="POST" action="/play" style="display: inline-block;">
-            <input type="hidden" name="column" value="1" />
-            <button type="submit" class="column-button">2</button>
-        </form>
-        <form method="POST" action="/play" style="display: inline-block;">
-            <input type="hidden" name="column" value="2" />
-            <button type="submit" class="column-button">3</button>
-        </form>
-        <form method="POST" action="/play" style="display: inline-block;">
-            <input type="hidden" name="column" value="3" />
-            <button type="submit" class="column-button">4</button>
-        </form>
-        <form method="POST" action="/play" style="display: inline-block;">
-            <input type="hidden" name="column" value="4" />
-            <button type="submit" class="column-button">5</button>
-        </form>
-        <form method="POST" action="/play" style="display: inline-block;">
-            <input type="hidden" name="column" value="5" />
-            <button type="submit" class="column-button">6</button>
-        </form>
-        <form method="POST" action="/play" style="display: inline-block;">
-            <input type="hidden" name="column" value="6" />
-            <button type="submit" class="column-button">7</button>
-        </form>
-    </div>
     {{end}}
+</div>
 
     <br />
     <form method="POST" action="/reset">
         <button type="submit">Reset Game</button>
-        <br />
-        <br />
     </form>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const board = document.getElementById("board");
+        const circles = board.querySelectorAll(".circle");
+        const ROWS = 6;
+        const COLS = 7;
+        const grid = Array.from({ length: ROWS }, () => Array(COLS).fill(null));
+        let currentPlayer = "red";
+
+        circles.forEach(c => {
+            c.addEventListener("click", (e) => {
+                const col = parseInt(e.target.dataset.col);
+                dropPiece(col);
+            });
+        });
+
+        function dropPiece(col) {
+            for (let row = ROWS - 1; row >= 0; row--) {
+                if (!grid[row][col]) {
+                    grid[row][col] = currentPlayer;
+                    animateDrop(row, col, currentPlayer);
+                    currentPlayer = currentPlayer === "red" ? "yellow" : "red";
+                    break;
+                }
+            }
+        }
+
+        function animateDrop(row, col, color) {
+            const cellIndex = row * COLS + col;
+            const circle = circles[cellIndex];
+            const piece = document.createElement("div");
+            piece.classList.add("piece", color);
+            board.appendChild(piece);
+
+            const cellRect = circle.getBoundingClientRect();
+            const boardRect = board.getBoundingClientRect();
+            piece.style.left = (cellRect.left - boardRect.left) + "px";
+            piece.style.top = "0px";
+
+            piece.animate([
+                { top: "0px" },
+                { top: (cellRect.top - boardRect.top) + "px" }
+            ], {
+                duration: 500,
+                easing: "ease-in"
+            }).onfinish = () => {
+                piece.style.top = (cellRect.top - boardRect.top) + "px";
+            };
+        }
+    });
+    </script>
 </body>
 </html>
