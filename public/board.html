@@ -6,8 +6,11 @@
     <script src="/static/play.js" defer></script>
 </head>
 <body>
-
-   <img src="/static/titre.png" class="logo">
+   <audio id="game-audio" loop autoplay>
+    <source src="/static/générique.ogg" type="audio/ogg">
+    <source src="/static/générique.mp3" type="audio/mpeg">
+</audio>
+    <img src="/static/titre.png" class="logo">
 
     <p>{{if .Winner}}Winner: {{.Winner}}!{{else}}Player: {{.CurrentPlayer}}{{end}}</p>
 
