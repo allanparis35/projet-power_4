@@ -3,68 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/connect4.css">
-    <script src="/static/music.js" defer></script>
+    <script src="/static/play.js" defer></script>
 </head>
 <body>
-    <audio id="game-audio" controls loop>
-        <source src="static/générique.ogg" type="audio/ogg">
-        <source src="static/générique.mp3" type="audio/mpeg">
-    </audio>
-<button id="rules" class="rules-btn">Rules</button>
-<script>
-    document.getElementById('rules').addEventListener('click', () => {
-        window.location.href = "/rules";
-    });
-</script>
-    <h2 class="logo">Puissance 4</h2>
+   <audio id="game-audio" loop autoplay>
+    <source src="/static/générique.ogg" type="audio/ogg">
+    <source src="/static/générique.mp3" type="audio/mpeg">
+</audio>
+    <img src="/static/titre.png" class="logo">
+
     <p>{{if .Winner}}Winner: {{.Winner}}!{{else}}Player: {{.CurrentPlayer}}{{end}}</p>
+
     <div id="board">
-        {{range $row := .Board}}
-            {{range $col, $cell := $row}}
-            <div class="circle {{if eq $cell "red"}}red-piece{{else if eq $cell "yellow"}}yellow-piece{{end}}"></div>
-            {{end}}
+    {{range $row := .Board}}
+        {{range $col, $cell := $row}}
+        <div class="circle {{if eq $cell "red"}}red-piece{{else if eq $cell "yellow"}}yellow-piece{{end}}"
+             data-col="{{$col}}">
+        </div>
         {{end}}
-    </div>
-        
-    {{if not .Winner}}
-    <br />
-    <div id="buttons-container">
-        <form method="POST" action="/play" style="display: inline-block;">
-            <input type="hidden" name="column" value="0" />
-            <button type="submit" class="column-button">1</button>
-        </form>
-        <form method="POST" action="/play" style="display: inline-block;">
-            <input type="hidden" name="column" value="1" />
-            <button type="submit" class="column-button">2</button>
-        </form>
-        <form method="POST" action="/play" style="display: inline-block;">
-            <input type="hidden" name="column" value="2" />
-            <button type="submit" class="column-button">3</button>
-        </form>
-        <form method="POST" action="/play" style="display: inline-block;">
-            <input type="hidden" name="column" value="3" />
-            <button type="submit" class="column-button">4</button>
-        </form>
-        <form method="POST" action="/play" style="display: inline-block;">
-            <input type="hidden" name="column" value="4" />
-            <button type="submit" class="column-button">5</button>
-        </form>
-        <form method="POST" action="/play" style="display: inline-block;">
-            <input type="hidden" name="column" value="5" />
-            <button type="submit" class="column-button">6</button>
-        </form>
-        <form method="POST" action="/play" style="display: inline-block;">
-            <input type="hidden" name="column" value="6" />
-            <button type="submit" class="column-button">7</button>
-        </form>
-    </div>
     {{end}}
+    </div>
 
     <br />
     <form method="POST" action="/reset">
         <button type="submit">Reset Game</button>
-        <br />
-        <br />
     </form>
+
 </body>
 </html>

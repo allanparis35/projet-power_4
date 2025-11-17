@@ -27,7 +27,6 @@ func PlayMove(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
 	}
-	http.Redirect(w, r, "/", http.StatusSeeOther)
 
 	if table.PlacePiece(col) {
 		table.State.Winner = winner.CheckWinner(table.State.Board)
@@ -36,6 +35,8 @@ func PlayMove(w http.ResponseWriter, r *http.Request) {
 			table.SwitchPlayer()
 		}
 	}
+
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
 func ResetHandler(w http.ResponseWriter, r *http.Request) {
