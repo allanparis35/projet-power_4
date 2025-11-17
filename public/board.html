@@ -10,7 +10,12 @@
         <source src="static/générique.ogg" type="audio/ogg">
         <source src="static/générique.mp3" type="audio/mpeg">
     </audio>
-
+<button id="rules" class="rules-btn">Rules</button>
+<script>
+    document.getElementById('rules').addEventListener('click', () => {
+        window.location.href = "/rules";
+    });
+</script>
     <h2 class="logo">Puissance 4</h2>
     <p>{{if .Winner}}Winner: {{.Winner}}!{{else}}Player: {{.CurrentPlayer}}{{end}}</p>
     <div id="board">
