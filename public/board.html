@@ -11,9 +11,16 @@
     <source src="/static/générique.ogg" type="audio/ogg">
     <source src="/static/générique.mp3" type="audio/mpeg">
 </audio>
-    <img src="/static/titre.png" class="logo">
 
-    <p>{{if .Winner}}Winner: {{.Winner}}!{{else}}Player: {{.CurrentPlayer}}{{end}}</p>
+    {{if .Winner}}
+        <div class="player-display winner-display">
+            <p>Winner: <span class="player-{{.Winner}}">{{.Winner}}</span>!</p>
+        </div>
+    {{else}}
+        <div class="player-display current-player-{{.CurrentPlayer}}">
+            <p>Player: <span class="player-{{.CurrentPlayer}}">{{.CurrentPlayer}}</span></p>
+        </div>
+    {{end}}
 
     <div id="board">
     {{range $row := .Board}}
