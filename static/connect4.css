@@ -5,7 +5,7 @@ body {
     height: 100vh;
     margin: 0;
     padding: 10px;
-    background: url("/static/haa.jpg");
+    background: url("/static/mer.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -85,7 +85,7 @@ p {
 #board {
     height: 450px;
     width: 525px;
-    background: url("/static/mer.jpg");
+    background: url("/static/bleuciel.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
